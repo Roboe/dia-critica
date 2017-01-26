@@ -61,14 +61,12 @@ const VOWELS_MAP = {
 
 
 // Functions
-function filterTextNodes(nonEmptyNodes) {
-  return nonEmptyNodes
-    .reduce((textNodes, node) => {
-      [...node.childNodes].forEach((childNode) => {
-        if (childNode.nodeType === 3) textNodes.push(childNode);
-      });
-      return textNodes;
-    }, []);
+function filterChildTextNodes(nodeList) {
+  return [...nodeList].reduce((previousTextNodes, node) => {
+    const childTextNodes = [...node.childNodes]
+      .filter(childNode => childNode.nodeType === Node.TEXT_NODE);
+    return [...previousTextNodes, ...childTextNodes];
+  }, []);
 }
 
 function removeAccent(word) {
@@ -79,7 +77,7 @@ function removeAccent(word) {
 
 // Main
 const nonEmptyNodes = document.querySelectorAll('body:lang(es) *:not(script):not(:empty)');
-const textNodes = filterTextNodes([...nonEmptyNodes]);
+const textNodes = filterChildTextNodes(nonEmptyNodes);
 
 DIACRITICAL_ACCENT_WORDS.forEach((word) => {
   textNodes.forEach((node) => {
