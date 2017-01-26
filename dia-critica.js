@@ -44,7 +44,7 @@ const DIACRITICAL_ACCENT_WORDS = [
   'Ése', 'Ésos',
   'Ó',
 ]
-.map((word) => new RegExp('(^|\W)' + word + '(\W??|$)', 'gi'));
+.map((word) => new RegExp(`(^|\W)${word}(\W??|$)`, 'gi'));
 
 const VOWELS_MAP = {
   'Á': 'A',
