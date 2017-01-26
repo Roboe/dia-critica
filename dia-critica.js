@@ -1,5 +1,5 @@
 // Constants
-const diacriticalAccentWords = [
+const DIACRITICAL_ACCENT_WORDS = [
   // Monosyllabic
   'dé',
   'él',
@@ -46,7 +46,7 @@ const diacriticalAccentWords = [
 ]
 .map((word) => new RegExp('(^|\W)' + word + '(\W??|$)', 'gi'));
 
-const vowelsMap = {
+const VOWELS_MAP = {
   'Á': 'A',
   'á': 'a',
   'É': 'E',
@@ -73,7 +73,7 @@ function filterTextNodes(nonEmptyNodes) {
 
 function removeAccent(word) {
   return word
-    .replace(/[ÁáÉéÍíÓóÚú]/g, (vowel) => vowelsMap[vowel])
+    .replace(/[ÁáÉéÍíÓóÚú]/g, (vowel) => VOWELS_MAP[vowel])
 }
 
 
@@ -81,7 +81,7 @@ function removeAccent(word) {
 const nonEmptyNodes = document.querySelectorAll('body:lang(es) *:not(script):not(:empty)');
 const textNodes = filterTextNodes([...nonEmptyNodes]);
 
-diacriticalAccentWords.forEach((word) => {
+DIACRITICAL_ACCENT_WORDS.forEach((word) => {
   textNodes.forEach((node) => {
     node.textContent = node.textContent.replace(word, removeAccent);
   });
