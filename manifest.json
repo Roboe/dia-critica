@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Dia-crítica",
-  "version": "0.1",
+  "version": "0.1.1",
 
   "description": "Elimina todas las tildes diacríticas de una página web.",
 
